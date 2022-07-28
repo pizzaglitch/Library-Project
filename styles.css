@@ -1,12 +1,62 @@
 body {
-    
+    display: grid;
+    grid-template-rows: .2fr .2fr auto;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 header {
-    grid-template: header;
-    background-color: bisque;
+    background-color: #8EA8C3;
+    font-size: 40px;
+    font-weight: bold;
 }
 
+header, .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    background-color: #406E8E;
+}
+.open-button {
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    height: 50px;
+    width: 150px;
+    gap: 10px;
+    border-radius: 5%;
+    box-shadow: 7px 7px 10px -5px;
+    border: none;
+    font-size: 20px;
+    /* text-shadow: 1px 1px #c1c1c1; */
+}
+
+/* .open-button:hover {
+    background-color: #CBF7ED;
+} */
+
+.open-button:active {
+    transform: scale(0.99);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: inset -1px -1px 2px 2px; */
+    /* border-radius: 5%; */
+
+}
+
+
+.plus {
+    font-size: 35px;
+}
+
+/* body */
 .content {
     display: grid;
     grid-template-rows: auto auto auto auto;
@@ -16,24 +66,62 @@ header {
 #library-grid {
     display: flex;
     justify-content: space-around;
-    padding: 30px;
-}
-.sample-book, .book-container {
-    background-color: lightcoral;
-    display: grid;
-    grid-template-rows: auto auto auto auto;
-    justify-content: center;
-    align-items: center;
-    width: 200px; 
-    height: 200px; 
-    border-radius: 20%;
-    gap: 10px;
+    padding: 15px;
 }
 
-/* .form-container {
+.book-container {
+    background-color: #CBF7ED;
+    display: grid;
+    grid-template-rows: auto auto auto ;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 200px; 
+    height: 200px; 
+    border-radius: 10%;
+}
+
+
+.form-popup {
     display: none;
     position: fixed;
-    top: 20px; 
-    left: 0; 
-    z-index: 10;
+    top: 50%;
+    left: 50%;
+    margin-left: -125px; 
+    margin-top: -120px;
+}
+
+#library-grid {
+    background-color: #23395B;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 300px; 
+    width: 250px;
+    padding: 10px;
+    border: 3px solid #8EA8C3;
+    background-color: #8EA8c3;
+    border-radius: 2%;
+}
+
+.label {
+    font-weight:bold;
+}
+
+.submit-btn {
+    background-color: #CBF7ED;
+}
+
+input[type=text], input[type=number] {
+    background: #f1f1f1;
+    border: none;
+    height: 30px;
+}
+
+/* 
+label[for='title'], label[for='author'] {
+    font-weight: bold;
+
 } */
