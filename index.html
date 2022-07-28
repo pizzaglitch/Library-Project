@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Library</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <header> My Library </header>
+    <div class="open-btn">
+        <button class="open-button" onclick="openForm()"> Add book </button>
+    </div>
+    <div class="form-popup" id="myForm">
+        <form class="form-container">
+            <label for="title">Title</label>
+            <input type="text" placeholder="The Sun Also Rises" name="title" required>
+            <label for="author">Author</label>
+            <input type="text" placeholder="Ernest Hemingway" name="author" required>
+            <label for="page-count">Page count</label>
+            <input type="text" placeholder="243" name="page-count" required>
+            <label for="read-status">Have you read this book before?</label>
+            <input type="text" placeholder="Yes" name="read-status" required>
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+    <div id="library-grid"> 
+        <!-- <div class="sample-book">
+            <div class="title">Dr. Suess</div>
+            <div class="author">by Dr. Suess</div>
+            <div class="page-count">23 pages</div>
+            <div class="read-status">Have read.</div>
+        </div> -->    
+    </div>
 </body>
+<script src="script.js"></script>
 </html>

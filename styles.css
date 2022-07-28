@@ -1,0 +1,39 @@
+body {
+    
+}
+
+header {
+    grid-template: header;
+    background-color: bisque;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    background-color: lightcoral;
+}
+
+#library-grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+.sample-book, .book-container {
+    background-color: lightcoral;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    justify-content: center;
+    align-items: center;
+    width: 200px; 
+    height: 200px; 
+    border-radius: 20%;
+    gap: 10px;
+}
+
+/* .form-container {
+    display: none;
+    position: fixed;
+    top: 20px; 
+    left: 0; 
+    z-index: 10;
+} */
