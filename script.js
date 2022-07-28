@@ -1,8 +1,8 @@
 let myLibrary = []; 
-const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260', 'Have not read');
-const theElementals = new Book('The Elementals', 'Michael McDowell', '230', 'Have not read');
-const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186', 'Have not read');
-const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235', 'Have read');
+const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
+const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
+const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
+const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
 myLibrary.push(theAuctioneer, theElementals, theHellboundHeart, theHobbit);
 
 // "The Hobbit", "The Auctioneer", "The Elementals", "The Hellbound Heart"
@@ -34,28 +34,33 @@ function displayBookInLibrary () {
         bookAuthor.innerText = i.author; 
         const pages = document.createElement('div'); 
         pages.innerText = i.pages;
-        const readStatus = document.createElement('div'); 
+        const readStatus = document.createElement('button'); 
         readStatus.innerText = i.readStatus;
+        const deleteButton = document.createElement('button'); 
+        deleteButton.innerText = 'Delete';
 
         // Add classes to each div
-        bookTitle.classList.add('book-title')
-        bookAuthor.classList.add('book-author')
-        pages.classList.add('page-count')
-        readStatus.classList.add('read-status')
+        bookTitle.classList.add('book-title');
+        bookAuthor.classList.add('book-author');
+        pages.classList.add('page-count');
+        readStatus.classList.add('read-status');
+        deleteButton.classList.add('delete-button');
+
+        // Add event listener to all buttons to swap read status on click
+        readStatus.addEventListener('click', swapReadStatus);
 
         //Create container within card to hold book info 
         const bookContainer = document.createElement('div');
-        bookContainer.classList.add('book-container')
-
+        bookContainer.classList.add('book-container');
+        
         //Attach individual div children to container parent
         bookContainer.appendChild(bookTitle); 
         bookContainer.appendChild(bookAuthor); 
         bookContainer.appendChild(pages); 
         bookContainer.appendChild(readStatus);
+        bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
     });
-
-    
 };
 displayBookInLibrary();
 
@@ -68,3 +73,16 @@ function closeForm() {
     document.getElementById('myForm').style.display = 'none'; 
 
 }
+
+// Swap read status on click 
+function swapReadStatus() {
+    this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
+}
+
+/* Lengthy version of ternary above
+if (this.innerText == 'Read') {
+    this.innerText = 'Unread';
+} else {
+    this.innerText = 'Read';
+}
+*/

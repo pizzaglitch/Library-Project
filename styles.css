@@ -5,13 +5,19 @@ body {
     width: 100vw;
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 }
 
+header, .button-container, .open-button, .read-status, .submit-btn, .cancel-btn {
+    font-family: sans-serif;
+}
+
+.card-container {
+    font-family: Arial, Helvetica, sans-serif
+}
 header {
     background-color: #8EA8C3;
     font-size: 40px;
-    font-weight: bold;
 }
 
 header, .button-container {
@@ -55,7 +61,9 @@ header, .button-container {
 
 
 .plus {
-    font-size: 35px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: -3px;
 }
 
 /* body */
@@ -69,6 +77,7 @@ header, .button-container {
     display: flex;
     justify-content: space-around;
     padding: 15px;
+    background-color: #23395B;
 }
 
 .book-container {
@@ -91,21 +100,19 @@ header, .button-container {
 }
 
 .read-status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-top: auto; 
-    padding: 20px;
-    height: 20px;
-    width:  100px;
+    height: 35px;
+    width:  80px;
     margin-bottom: 10px;
     border-radius: 5%;
     box-shadow: 2px 2px 2px -2px;
     background-color: #8EA8C3;
-    /* color: white; */
-    font-weight: bold;
 }
 
+.delete-button {
+    margin-bottom: 5px;
+    background-color: #E55934;
+}
 /* form pop-up */
 .form-popup {
     display: none;
@@ -116,9 +123,7 @@ header, .button-container {
     margin-top: -120px;
 }
 
-#library-grid {
-    background-color: #23395B;
-}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -126,26 +131,23 @@ header, .button-container {
     height: 300px; 
     width: 250px;
     padding: 10px;
-    border: 3px solid #8EA8C3;
     background-color: #8EA8c3;
     border-radius: 2%;
-
-}
-
-.label {
-    font-weight:bold;
+    border: 3px solid #406E8E;
 }
 
 .submit-btn {
     background-color: #CBF7ED;
 }
 
-.submit-btn, .btn-cancel {
-    height: 35px;
+.submit-btn, .close-btn {
+    height: 33px;
+    font-weight: bold;
 }
+
 input[type=text], input[type=number] {
+    border: 2px solid black;
     background: #f1f1f1;
-    border: none;
     height: 30px;
 }
 
