@@ -34,6 +34,8 @@ header, .button-container {
     box-shadow: 7px 7px 10px -5px;
     border: none;
     font-size: 20px;
+    background-color: #8EA8C3;
+
     /* text-shadow: 1px 1px #c1c1c1; */
 }
 
@@ -70,18 +72,41 @@ header, .button-container {
 }
 
 .book-container {
-    background-color: #CBF7ED;
-    display: grid;
-    grid-template-rows: auto auto auto ;
+    background-color: #BAD1CD;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 200px; 
     height: 200px; 
+    gap: 10px;
     border-radius: 10%;
+    box-shadow: 5px 5px 5px 3px #0b1f42;
 }
 
+.book-title {
+    margin-top: auto;
+    font-style: italic;
+}
 
+.read-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto; 
+    padding: 20px;
+    height: 20px;
+    width:  100px;
+    margin-bottom: 10px;
+    border-radius: 5%;
+    box-shadow: 2px 2px 2px -2px;
+    background-color: #8EA8C3;
+    /* color: white; */
+    font-weight: bold;
+}
+
+/* form pop-up */
 .form-popup {
     display: none;
     position: fixed;
@@ -104,6 +129,7 @@ header, .button-container {
     border: 3px solid #8EA8C3;
     background-color: #8EA8c3;
     border-radius: 2%;
+
 }
 
 .label {
@@ -114,6 +140,9 @@ header, .button-container {
     background-color: #CBF7ED;
 }
 
+.submit-btn, .btn-cancel {
+    height: 35px;
+}
 input[type=text], input[type=number] {
     background: #f1f1f1;
     border: none;
