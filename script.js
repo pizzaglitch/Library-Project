@@ -37,7 +37,7 @@ function displayBookInLibrary () {
         const readStatus = document.createElement('button'); 
         readStatus.innerText = i.readStatus;
         const deleteButton = document.createElement('button'); 
-        deleteButton.innerText = 'Delete';
+        
 
         // Add classes to each div
         bookTitle.classList.add('book-title');
@@ -46,8 +46,9 @@ function displayBookInLibrary () {
         readStatus.classList.add('read-status');
         deleteButton.classList.add('delete-button');
 
-        // Add event listener to all buttons to swap read status on click
+        // Add event listeners to readStatus and deleteButton
         readStatus.addEventListener('click', swapReadStatus);
+        deleteButton.addEventListener('click', deleteContainer);
 
         //Create container within card to hold book info 
         const bookContainer = document.createElement('div');
@@ -79,6 +80,10 @@ function swapReadStatus() {
     this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
 }
 
+function deleteContainer() {
+    this.parentElement.remove();
+    myLibrary = [];
+}
 /* Lengthy version of ternary above
 if (this.innerText == 'Read') {
     this.innerText = 'Unread';

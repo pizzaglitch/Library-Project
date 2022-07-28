@@ -110,9 +110,17 @@ header, .button-container {
 }
 
 .delete-button {
+    background-image: url('trash-can-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 40px;
+    height: 30px;
     margin-bottom: 5px;
-    background-color: #E55934;
+    border: 0;
+    background-color: #BAD1CD;
 }
+
+  
 /* form pop-up */
 .form-popup {
     display: none;
