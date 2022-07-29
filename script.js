@@ -88,13 +88,18 @@ function createNewBook () {
     myLibrary = [];
     let b1 = new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
-    closeForm() 
-    
-    // this.newTitle = newTitle; 
-    // this.newAuthor = newAuthor; 
-    // this.newPageCount = newPageCount; 
-    // this.newReadStatus = newReadStatus; 
-    
+    closeForm();
+    document.getElementById("form-container").reset();
+
+    // title.value = '';
+    // author.value = '';
+    // const radio = document.querySelectorAll('input[type=radio]')
+    // for(i=0; i < radio.length; i++) {
+    //     radio[i].checked = false;
+    // }
+    // document.querySelector('input[type=number]').checked='false';
+s
+
 }
 // createNewBook.protoype = Object.create(Book.prototype);
     // = document.querySelector('input[type='radio']:checked').value;

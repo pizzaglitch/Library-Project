@@ -17,31 +17,25 @@
         </button>
     </div>
     <div class="form-popup" id="myForm">
-        <form class="form-container">
+        <form id="form-container">
             <!-- <label for="title">Book Title</label> -->
-            <input type="text" placeholder="Book Title" name="title" required>
+            <input type="text" placeholder="Book Title" name="title" id="title" required>
             <!-- <label for="author">Author</label> -->
-            <input type="text" placeholder="Author" name="author" required>
+            <input type="text" placeholder="Author" name="author" id="author" required>
             <!-- <label for="page-count">Page count</label> -->
-            <input type="number" placeholder="Pages" name="page-count" required>
+            <input type="number" placeholder="Pages" name="page-count" id="page-count" min="1" required>
             <label for="read-status">Have you read this book before?</label>
             <div class="read-status-btns">
-                <input type="radio" name="read-status" class="read-status-btn" id="yesChoice">
+                <input type="radio" name="read-status" class="read-status-btn" id="yesChoice" value="Read">
                 <label for="yesChoice">Yes</label>
-                <input type="radio" name="read-status" class="read-status-btn" id="noChoice">
+                <input type="radio" name="read-status" class="read-status-btn" id="noChoice" value="Unread">
                 <label for="noChoice">No</label>
             </div>
-            <button type="submit" class="submit-btn">Submit</button>
-            <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
+            <button type="button" class="submit-btn" onclick="createNewBook()">Submit</button>
+            <button type="button" class="close-btn" onclick="closeForm()">Close</button>
         </form>
     </div>
-    <div id="library-grid"> 
-        <!-- <div class="sample-book">
-            <div class="title">Dr. Suess</div>
-            <div class="author">by Dr. Suess</div>
-            <div class="page-count">23 pages</div>
-            <div class="read-status">Have read.</div>
-        </div> -->    
+    <div id="library-grid">     
     </div>
 </body>
 <script src="script.js"></script>
