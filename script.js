@@ -3,7 +3,6 @@ const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Un
 const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
 const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
-myLibrary.push(theAuctioneer, theElementals, theHellboundHeart, theHobbit);
 
 // "The Hobbit", "The Auctioneer", "The Elementals", "The Hellbound Heart"
 function Book(title, author, pages, readStatus) {
@@ -15,14 +14,13 @@ function Book(title, author, pages, readStatus) {
     this.bookInfo = function () {
         return ('Book Title: ' + title + ' by ' + author + '. Page count: ' + pages + '. Read status: ' + readStatus);
     }
-    
+    myLibrary.push(this)
 };
 //adds input book to the myLibrary array
 function addBookToLibrary () {
     const input = document.getElementById('book-input');
     myLibrary.push(input.value); 
 }
-
 
 //Creates cards in html displaying books from array
 function displayBookInLibrary () {
@@ -72,22 +70,55 @@ function openForm() {
 //close form
 function closeForm() {
     document.getElementById('myForm').style.display = 'none'; 
-
 }
+
+// Take input from form and create new book object 
+    
+function createNewBook () {
+    const newTitle = document.getElementById('title').value;
+    const newAuthor = document.getElementById('author').value;
+    const newPageCount = document.getElementById('page-count').value;
+    // const newReadStatus = '';
+    const newReadStatus = document.querySelector('input[name="read-status"]:checked').value;
+    // for (i = 0 ; i < radioReadStatus.length; i++) {
+    //     if (radioReadStatus[i].type === 'radio' && radioReadStatus[i].checked) {
+    //         newReadStatus = radio[i].value;
+    //     }
+    // }
+    myLibrary = [];
+    let b1 = new Book(newTitle, newAuthor, newPageCount, newReadStatus);
+    displayBookInLibrary();
+    closeForm() 
+    
+    // this.newTitle = newTitle; 
+    // this.newAuthor = newAuthor; 
+    // this.newPageCount = newPageCount; 
+    // this.newReadStatus = newReadStatus; 
+    
+}
+// createNewBook.protoype = Object.create(Book.prototype);
+    // = document.querySelector('input[type='radio']:checked').value;
+    // readstatus needs to be fixed 
+    
+   
+
 
 // Swap read status on click 
 function swapReadStatus() {
     this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
 }
+     /* Verbose version of ternary above
+    if (this.innerText == 'Read') {
+        this.innerText = 'Unread';
+    } else {
+        this.innerText = 'Read';
+    } */
 
+//delete book card and empty array
 function deleteContainer() {
     this.parentElement.remove();
+    //works temporarily but it clears the entire array on delete. 
+    //I may need to delete it from its index in the array too
     myLibrary = [];
 }
-/* Lengthy version of ternary above
-if (this.innerText == 'Read') {
-    this.innerText = 'Unread';
-} else {
-    this.innerText = 'Read';
-}
-*/
+   
