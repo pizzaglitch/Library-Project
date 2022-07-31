@@ -5,26 +5,31 @@ const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 p
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
 
 // "The Hobbit", "The Auctioneer", "The Elementals", "The Hellbound Heart"
-function Book(title, author, pages, readStatus) {
+function Book(title, author, pages, readStatus, position) {
     this.title = title;
     this.author = author; 
     this.pages = pages; 
     this.readStatus = readStatus;
-    
+    this.position = position; 
+
+   //try to create a book position
     this.bookInfo = function () {
         return ('Book Title: ' + title + ' by ' + author + '. Page count: ' + pages + '. Read status: ' + readStatus);
     }
     myLibrary.push(this)
+    //adds a number !!! now add it to the DOM for each container...
 };
-//adds input book to the myLibrary array
-function addBookToLibrary () {
-    const input = document.getElementById('book-input');
-    myLibrary.push(input.value); 
-}
-
+//adds input book to the myLibrary array (maybe does nothing)
+// function addBookToLibrary () {
+//     const input = document.getElementById('book-input');
+//     myLibrary.push(input.value); 
+// }
 //Creates cards in html displaying books from array
 function displayBookInLibrary () {
+    //doesnt work
     myLibrary.forEach(function (i) { 
+        
+
         // Create separate divs for each piece of book info
         const bookTitle = document.createElement('div'); 
         bookTitle.innerText = i.title;
@@ -35,8 +40,8 @@ function displayBookInLibrary () {
         const readStatus = document.createElement('button'); 
         readStatus.innerText = i.readStatus;
         const deleteButton = document.createElement('button'); 
+        const bookPosition = myLibrary.indexOf(i); 
         
-
         // Add classes to each div
         bookTitle.classList.add('book-title');
         bookAuthor.classList.add('book-author');
@@ -51,7 +56,10 @@ function displayBookInLibrary () {
         //Create container within card to hold book info 
         const bookContainer = document.createElement('div');
         bookContainer.classList.add('book-container');
-        
+
+        // Add unique id to each container matching its index
+        bookContainer.setAttribute('id', bookPosition);
+
         //Attach individual div children to container parent
         bookContainer.appendChild(bookTitle); 
         bookContainer.appendChild(bookAuthor); 
@@ -59,7 +67,10 @@ function displayBookInLibrary () {
         bookContainer.appendChild(readStatus);
         bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
+        
+        
     });
+    
 };
 displayBookInLibrary();
 
@@ -73,40 +84,20 @@ function closeForm() {
 }
 
 // Take input from form and create new book object 
-    
 function createNewBook () {
     const newTitle = document.getElementById('title').value;
     const newAuthor = document.getElementById('author').value;
-    const newPageCount = document.getElementById('page-count').value;
-    // const newReadStatus = '';
+    const newPageCount = document.getElementById('page-count').value + ' pages';
     const newReadStatus = document.querySelector('input[name="read-status"]:checked').value;
-    // for (i = 0 ; i < radioReadStatus.length; i++) {
-    //     if (radioReadStatus[i].type === 'radio' && radioReadStatus[i].checked) {
-    //         newReadStatus = radio[i].value;
-    //     }
-    // }
+   
+    //Quick fix to stop 4+ cards from being posted when a new card is created
     myLibrary = [];
-    let b1 = new Book(newTitle, newAuthor, newPageCount, newReadStatus);
+    // libraryGrid.textContent = '';
+    new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
     document.getElementById("form-container").reset();
-
-    // title.value = '';
-    // author.value = '';
-    // const radio = document.querySelectorAll('input[type=radio]')
-    // for(i=0; i < radio.length; i++) {
-    //     radio[i].checked = false;
-    // }
-    // document.querySelector('input[type=number]').checked='false';
-s
-
 }
-// createNewBook.protoype = Object.create(Book.prototype);
-    // = document.querySelector('input[type='radio']:checked').value;
-    // readstatus needs to be fixed 
-    
-   
-
 
 // Swap read status on click 
 function swapReadStatus() {
@@ -121,9 +112,21 @@ function swapReadStatus() {
 
 //delete book card and empty array
 function deleteContainer() {
-    this.parentElement.remove();
-    //works temporarily but it clears the entire array on delete. 
-    //I may need to delete it from its index in the array too
-    myLibrary = [];
+    let bookContainersId = this.parentElement.id; 
+    console.log(bookContainersId)
+    myLibrary.forEach(function (i) { 
+        if (bookContainersId == myLibrary.indexOf(i)){
+            console.log(myLibrary.indexOf(i))
+        myLibrary.splice(bookContainersId, 1);
+        }
+    });
+    // I DID IT IT WORKS!!!
+    this.parentElement.remove();    
 }
-   
+
+/* to do:
+Line 30: Give a unique value to each book container, tie the value to its position 
+        in the array
+Line 101: remove existing items in array when publishing new container, then add the newly created
+        one. Just want the new book in the array, not the example books
+*/
