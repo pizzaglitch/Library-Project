@@ -17,7 +17,6 @@ function Book(title, author, pages, readStatus, position) {
         return ('Book Title: ' + title + ' by ' + author + '. Page count: ' + pages + '. Read status: ' + readStatus);
     }
     myLibrary.push(this)
-    //adds a number !!! now add it to the DOM for each container...
 };
 //adds input book to the myLibrary array (maybe does nothing)
 // function addBookToLibrary () {
@@ -26,10 +25,8 @@ function Book(title, author, pages, readStatus, position) {
 // }
 //Creates cards in html displaying books from array
 function displayBookInLibrary () {
-    //doesnt work
+    
     myLibrary.forEach(function (i) { 
-        
-
         // Create separate divs for each piece of book info
         const bookTitle = document.createElement('div'); 
         bookTitle.innerText = i.title;
@@ -67,10 +64,7 @@ function displayBookInLibrary () {
         bookContainer.appendChild(readStatus);
         bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
-        
-        
     });
-    
 };
 displayBookInLibrary();
 
@@ -91,12 +85,17 @@ function createNewBook () {
     const newReadStatus = document.querySelector('input[name="read-status"]:checked').value;
    
     //Quick fix to stop 4+ cards from being posted when a new card is created
-    myLibrary = [];
+    // myLibrary = [];
+    const libraryGrid = document.getElementById('library-grid');
+    while(libraryGrid.firstChild){
+        libraryGrid.removeChild(libraryGrid.firstChild);
+      }
     // libraryGrid.textContent = '';
     new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
     document.getElementById("form-container").reset();
+    
 }
 
 // Swap read status on click 
