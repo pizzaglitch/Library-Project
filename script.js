@@ -4,7 +4,6 @@ const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages'
 const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
 
-// "The Hobbit", "The Auctioneer", "The Elementals", "The Hellbound Heart"
 function Book(title, author, pages, readStatus, position) {
     this.title = title;
     this.author = author; 
@@ -12,20 +11,14 @@ function Book(title, author, pages, readStatus, position) {
     this.readStatus = readStatus;
     this.position = position; 
 
-   //try to create a book position
     this.bookInfo = function () {
         return ('Book Title: ' + title + ' by ' + author + '. Page count: ' + pages + '. Read status: ' + readStatus);
     }
     myLibrary.push(this)
 };
-//adds input book to the myLibrary array (maybe does nothing)
-// function addBookToLibrary () {
-//     const input = document.getElementById('book-input');
-//     myLibrary.push(input.value); 
-// }
+
 //Creates cards in html displaying books from array
 function displayBookInLibrary () {
-    
     myLibrary.forEach(function (i) { 
         // Create separate divs for each piece of book info
         const bookTitle = document.createElement('div'); 
@@ -85,17 +78,14 @@ function createNewBook () {
     const newReadStatus = document.querySelector('input[name="read-status"]:checked').value;
    
     //Quick fix to stop 4+ cards from being posted when a new card is created
-    // myLibrary = [];
     const libraryGrid = document.getElementById('library-grid');
     while(libraryGrid.firstChild){
         libraryGrid.removeChild(libraryGrid.firstChild);
       }
-    // libraryGrid.textContent = '';
     new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
     document.getElementById("form-container").reset();
-    
 }
 
 // Swap read status on click 
@@ -122,10 +112,3 @@ function deleteContainer() {
     // I DID IT IT WORKS!!!
     this.parentElement.remove();    
 }
-
-/* to do:
-Line 30: Give a unique value to each book container, tie the value to its position 
-        in the array
-Line 101: remove existing items in array when publishing new container, then add the newly created
-        one. Just want the new book in the array, not the example books
-*/
