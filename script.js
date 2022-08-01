@@ -11,26 +11,23 @@ function Book(title, author, pages, readStatus, position) {
     this.readStatus = readStatus;
     this.position = position; 
 
-    this.bookInfo = function () {
-        return ('Book Title: ' + title + ' by ' + author + '. Page count: ' + pages + '. Read status: ' + readStatus);
-    }
     myLibrary.push(this)
 };
 
 // Creates cards in html displaying books from array
 function displayBookInLibrary () {
-    myLibrary.forEach(function (i) { 
+    myLibrary.forEach(function (book) { 
         // Create separate divs for each piece of book info
         const bookTitle = document.createElement('div'); 
-        bookTitle.innerText = i.title;
+        bookTitle.innerText = book.title;
         const bookAuthor = document.createElement('div'); 
-        bookAuthor.innerText = i.author; 
+        bookAuthor.innerText = book.author; 
         const pages = document.createElement('div'); 
-        pages.innerText = i.pages;
+        pages.innerText = book.pages;
         const readStatus = document.createElement('button'); 
-        readStatus.innerText = i.readStatus;
+        readStatus.innerText = book.readStatus;
         const deleteButton = document.createElement('button'); 
-        const bookPosition = myLibrary.indexOf(i); 
+        const bookPosition = myLibrary.indexOf(book); 
         
         // Add classes to each div
         bookTitle.classList.add('book-title');
@@ -59,10 +56,10 @@ function displayBookInLibrary () {
         document.getElementById('library-grid').appendChild(bookContainer);
         
         //Set default readStatus color on example card container ('The Hobbit')
-        if (readStatus.innerText == 'Unread') {
-            readStatus.style.setProperty('background', '#F78E69') 
-        } else {
+        if (readStatus.innerText == 'Read') {
             readStatus.style.setProperty('background', '#9A9B73') 
+        } else {
+            readStatus.style.setProperty('background', '#F78E69') 
         }
     });
 };
