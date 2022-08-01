@@ -1,8 +1,7 @@
 body {
     display: grid;
-    grid-template-rows: .2fr .2fr auto;
+    grid-template-rows: .1fr .2fr 1fr;
     height: 100vh;
-    width: 100vw;
     margin: 0;
     padding: 0;
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
@@ -11,14 +10,13 @@ body {
 header, .button-container, .open-button, .read-status, .submit-btn, .cancel-btn {
     font-family: sans-serif;
 }
-
 .card-container {
     font-family: Arial, Helvetica, sans-serif
 }
+
 header {
-    background-color: #8EA8C3;
+    background-color: #D7B29D;
     font-size: 40px;
-    padding: 10px;
 }
 
 header, .button-container {
@@ -26,10 +24,11 @@ header, .button-container {
     justify-content: center;
     align-items: center;
 }
-
+    /* Add Book Container */
 .button-container {
-    background-color: #406E8E;
+    background-color: #D7B29D;
 }
+
 .open-button {
     display: flex;
     justify-content: center;    
@@ -39,36 +38,25 @@ header, .button-container {
     gap: 10px;
     border-radius: 5%;
     box-shadow: 7px 7px 10px -5px;
-    border: none;
+    border: 2px solid;
     font-size: 20px;
-    background-color: #8EA8C3;
+    background-color: #FEDC97;
     margin: 10px 0 10px 0;
-
-    /* text-shadow: 1px 1px #c1c1c1; */
 }
-
-/* .open-button:hover {
-    background-color: #CBF7ED;
-} */
 
 .open-button:active {
     transform: scale(0.99);
     display: flex;
     justify-content: center;
     align-items: center;
-    /* box-shadow: inset -1px -1px 2px 2px; */
-    /* border-radius: 5%; */
-
 }
-
 
 .plus {
     font-size: 25px;
     font-weight: bold;
     margin-top: -3px;
 }
-
-/* body */
+    /* body */
 .content {
     display: grid;
     grid-template-rows: auto auto auto auto;
@@ -76,48 +64,50 @@ header, .button-container {
 }
 
 #library-container {
-    background-color: #23395B;
+    background-color: #3E442B;
 }
 #library-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     justify-items: center;
     padding: 30px;
-    gap: 50px;
-    /* background-color: #23395B; */
+    gap: 25px;
 }
-
+    /* Book card containers  */
 .book-container {
-    background-color: #BAD1CD;
+    background-color: #FEDC97;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 200px; 
-    /* height: 200px;  */
     padding: 10px;
     gap: 20px;
-    border-radius: 7%;
+    border-radius: 5%;
     font-size: 18px;
-    box-shadow: 5px 5px 5px 3px #0b1f42;
+    box-shadow: 7px 7px 10px -5px;
 }
 
 .book-title {
     margin-top: auto;
     font-style: italic;
 }
+
 .book-title, .book-author {
     display: flex;
     flex-grow: 1;
     word-break: break-all;
 }
+
 .read-status {
-    margin-top: auto; 
     height: 35px;
     width:  80px;
     margin-bottom: -10px;
     border-radius: 5%;
     box-shadow: 2px 2px 2px -2px;
-    background-color: #8EA8C3;
+}
+
+.read-status:active {
+    box-shadow: 0px 0px 5px #C1C1C1;
 }
 
 .delete-button {
@@ -130,7 +120,7 @@ header, .button-container {
     margin-bottom: 5px;
     margin-top: 15px;
     border: 0;
-    background-color: #BAD1CD;
+    background-color: #FEDC97;
 }
 
 .delete-button:hover {
@@ -139,9 +129,8 @@ header, .button-container {
     height: 20px;
     background-size: 20px;    
 }
-
   
-/* form pop-up */
+    /* Pop-up Form */
 .form-popup {
     display: none;
     position: fixed;
@@ -151,7 +140,6 @@ header, .button-container {
     margin-top: -190px;
 }
 
-
 #form-container {
     display: flex;
     flex-direction: column;
@@ -159,13 +147,17 @@ header, .button-container {
     height: 300px; 
     width: 250px;
     padding: 10px;
-    background-color: #8EA8c3;
+    background-color: #D7B29D;
     border-radius: 2%;
-    border: 3px solid #406E8E;
+    border: 3px solid;
 }
 
 .submit-btn {
-    background-color: #CBF7ED;
+    background-color: #FEDC97;
+}
+
+.close-btn {
+    background-color: #F78E69;
 }
 
 .submit-btn, .close-btn {
@@ -178,9 +170,3 @@ input[type=text], input[type=number] {
     background: #f1f1f1;
     height: 30px;
 }
-
-/* 
-label[for='title'], label[for='author'] {
-    font-weight: bold;
-
-} */

@@ -9,20 +9,16 @@
 </head>
 <body>
     <header> My Library </header>
-    <div class="button-container">
-        
+    <div class="button-container"> 
         <button class="open-button" onclick="openForm()"> 
             <div class="plus">+</div>
             Add book 
         </button>
     </div>
     <div class="form-popup" id="myForm">
-        <form id="form-container">
-            <!-- <label for="title">Book Title</label> -->
+        <form id="form-container" onsubmit ='return isValidForm()'>
             <input type="text" placeholder="Book Title" name="title" id="title" maxlength="100" required>
-            <!-- <label for="author">Author</label> -->
             <input type="text" placeholder="Author" name="author" id="author" maxlength="100" required>
-            <!-- <label for="page-count">Page count</label> -->
             <input type="number" placeholder="Pages" name="page-count" id="page-count" min="1" required>
             <label for="read-status">Have you read this book before?</label>
             <div class="read-status-btns">
@@ -31,13 +27,12 @@
                 <input type="radio" name="read-status" class="read-status-btn" id="noChoice" value="Unread" required>
                 <label for="noChoice">No</label>
             </div>
-            <button type="submit" class="submit-btn" onclick="createNewBook()">Submit</button>
+            <button type="button" class="submit-btn" onclick="createNewBook()">Submit</button>
             <button type="button" class="close-btn" onclick="closeForm()">Close</button>
         </form>
     </div>
     <div id="library-container">
-        <div id="library-grid">
-        </div>
+        <div id="library-grid"></div>
     </div>
 </body>
 <script src="script.js"></script>

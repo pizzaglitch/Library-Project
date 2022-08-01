@@ -1,7 +1,7 @@
 let myLibrary = []; 
-const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
-const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
-const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
+// const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
+// const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
+// const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
 
 function Book(title, author, pages, readStatus, position) {
@@ -17,7 +17,7 @@ function Book(title, author, pages, readStatus, position) {
     myLibrary.push(this)
 };
 
-//Creates cards in html displaying books from array
+// Creates cards in html displaying books from array
 function displayBookInLibrary () {
     myLibrary.forEach(function (i) { 
         // Create separate divs for each piece of book info
@@ -57,6 +57,13 @@ function displayBookInLibrary () {
         bookContainer.appendChild(readStatus);
         bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
+        
+        //Set default readStatus color on example card container ('The Hobbit')
+        if (readStatus.innerText == 'Unread') {
+            readStatus.style.setProperty('background', '#F78E69') 
+        } else {
+            readStatus.style.setProperty('background', '#9A9B73') 
+        }
     });
 };
 displayBookInLibrary();
@@ -76,12 +83,12 @@ function createNewBook () {
     const newAuthor = document.getElementById('author').value;
     const newPageCount = document.getElementById('page-count').value + ' pages';
     const newReadStatus = document.querySelector('input[name="read-status"]:checked').value;
-   
-    //Quick fix to stop 4+ cards from being posted when a new card is created
+
+    //clear grid 
     const libraryGrid = document.getElementById('library-grid');
     while(libraryGrid.firstChild){
         libraryGrid.removeChild(libraryGrid.firstChild);
-      }
+    }
     new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
@@ -91,24 +98,23 @@ function createNewBook () {
 // Swap read status on click 
 function swapReadStatus() {
     this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
-}
-     /* Verbose version of ternary above
-    if (this.innerText == 'Read') {
-        this.innerText = 'Unread';
+    console.log(this.innerText);
+    if (this.innerText == 'Unread') {
+        this.style.setProperty('background', '#F78E69') 
     } else {
-        this.innerText = 'Read';
-    } */
+        this.style.setProperty('background', '#9A9B73') 
+    }
+}
 
 //delete book card and empty array
 function deleteContainer() {
     let bookContainersId = this.parentElement.id; 
-    console.log(bookContainersId)
     myLibrary.forEach(function (i) { 
         if (bookContainersId == myLibrary.indexOf(i)){
             console.log(myLibrary.indexOf(i))
         myLibrary.splice(bookContainersId, 1);
         }
     });
-    // I DID IT IT WORKS!!!
+    // ^^ I DID IT! IT WORKS!!!
     this.parentElement.remove();    
 }
