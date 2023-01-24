@@ -2,17 +2,33 @@ let myLibrary = [];
 // const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
 // const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
 // const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
+
+// function Book(title, author, pages, readStatus, position) {
+//     this.title = title;
+//     this.author = author; 
+//     this.pages = pages; 
+//     this.readStatus = readStatus;
+//     this.position = position; 
+
+//     myLibrary.push(this)
+// };
+
+//refactor update: not displaying hobbit on load 
+
+//Class refactor
+class Book {
+    constructor (title, author, pages, readStatus, position) {
+        this.title = title, 
+        this.author = author, 
+        this.pages = pages,
+        this.readStatus = readStatus, 
+        this.position = position,
+
+        myLibrary.push(this)
+    }
+}
+
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
-
-function Book(title, author, pages, readStatus, position) {
-    this.title = title;
-    this.author = author; 
-    this.pages = pages; 
-    this.readStatus = readStatus;
-    this.position = position; 
-
-    myLibrary.push(this)
-};
 
 // Creates cards in html displaying books from array
 function displayBookInLibrary () {
@@ -63,7 +79,7 @@ function displayBookInLibrary () {
         }
     });
 };
-displayBookInLibrary();
+displayBookInLibrary ();
 
 //open form 
 function openForm() {
@@ -83,9 +99,10 @@ function createNewBook () {
 
     //clear grid 
     const libraryGrid = document.getElementById('library-grid');
-    while(libraryGrid.firstChild){
+    while (libraryGrid.firstChild) {
         libraryGrid.removeChild(libraryGrid.firstChild);
     }
+    
     new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
@@ -95,13 +112,14 @@ function createNewBook () {
 // Swap read status on click 
 function swapReadStatus() {
     this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
-    console.log(this.innerText);
     if (this.innerText == 'Unread') {
         this.style.setProperty('background', '#F78E69') 
     } else {
         this.style.setProperty('background', '#9A9B73') 
     }
 }
+
+//class refactor 
 
 //delete book card and empty array
 function deleteContainer() {
@@ -115,3 +133,4 @@ function deleteContainer() {
     // ^^ I DID IT! IT WORKS!!!
     this.parentElement.remove();    
 }
+
