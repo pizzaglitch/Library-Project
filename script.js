@@ -51,10 +51,8 @@ function displayBookInLibrary () {
         readStatus.classList.add('read-status');
         deleteButton.classList.add('delete-button');
 
-        // Add event listeners to readStatus and deleteButton
         readStatus.addEventListener('click', book.swapButtonReadStatus);
         readStatus.addEventListener('click', function() {book.swapObjectReadStatus()});
-
         deleteButton.addEventListener('click', deleteContainer);
 
         //Create container within card to hold book info 
