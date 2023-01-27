@@ -1,19 +1,7 @@
 const myLibrary = []; 
-const readButtons = document.querySelectorAll('.read-status');
 // const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
 // const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
 // const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
-
-// function Book(title, author, pages, readStatus, position) {
-//     this.title = title;
-//     this.author = author; 
-//     this.pages = pages; 
-//     this.readStatus = readStatus;
-//     this.position = position; 
-
-//     myLibrary.push(this)
-// };
-
 
 //Class refactor
 class Book {
@@ -27,44 +15,18 @@ class Book {
         myLibrary.push(this)
     }
     swapObjectReadStatus() {
-        // const readButton = document.querySelector('.read-status')
-        console.log(this.readStatus)
-        // this.readStatus == 'Read' ? this.readStatus = 'Unread' : this.readStatus = 'Read';
-        if (this.readStatus == 'Read') {
-            this.readStatus = 'Unread' 
-        } else {
-            this.readStatus = 'Read'
-        }
-        //works .. but how to make it better?
-        // if (this.innerText == 'Read') {
-        //     this.innerText = 'Unread'
-        //     this.style.setProperty('background', '#F78E69') 
-        // } else {
-        //     this.innerText = 'Read'
-        //         this.style.setProperty('background', '#9A9B73') 
-        // }
-        // myLibrary.forEach(function (book) {
-        //     if (book.readStatus ==  'Read') {
-        //         book.readStatus = 'Unread'
-        //     } else {
-        //         book.readStatus = 'Read'
-        //     }
-
-        // })
-
-        // book.readStatus == 'Read' ? book.readStatus = 'Unread' : book.readStatus = 'Read';
-
+        this.readStatus == 'Read' ? this.readStatus = 'Unread' : this.readStatus = 'Read';
     }
     swapButtonReadStatus() {
-        this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
         if (this.innerText == 'Unread') {
-            this.style.setProperty('background', '#F78E69') 
-        } else {
+            this.innerText = 'Read'
             this.style.setProperty('background', '#9A9B73') 
+        } else {
+            this.innerText = 'Unread'
+            this.style.setProperty('background', '#F78E69') 
         }
     }
 }
-
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
 
 // Creates cards in html displaying books from array
@@ -91,7 +53,7 @@ function displayBookInLibrary () {
 
         // Add event listeners to readStatus and deleteButton
         readStatus.addEventListener('click', book.swapButtonReadStatus);
-        readStatus.addEventListener('click', function() { book.swapObjectReadStatus(book)});
+        readStatus.addEventListener('click', function() {book.swapObjectReadStatus()});
 
         deleteButton.addEventListener('click', deleteContainer);
 
@@ -110,7 +72,7 @@ function displayBookInLibrary () {
         bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
         
-        //Set default readStatus color on example card container ('The Hobbit')
+        //Sets default readStatus color on newly created book tile
         if (readStatus.innerText == 'Read') {
             readStatus.style.setProperty('background', '#9A9B73') 
         } else {
@@ -148,16 +110,6 @@ function createNewBook () {
     document.getElementById("form-container").reset();
 }
 
-// Swap read status on click 
-// function swapReadStatus() {
-//     this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
-//     if (this.innerText == 'Unread') {
-//         this.style.setProperty('background', '#F78E69') 
-//     } else {
-//         this.style.setProperty('background', '#9A9B73') 
-//     }
-// }
-
 //delete book card and empty array
 function deleteContainer() {
     let bookContainersId = this.parentElement.id; 
@@ -166,7 +118,5 @@ function deleteContainer() {
         myLibrary.splice(bookContainersId, 1);
         }
     });
-    // ^^ I DID IT! IT WORKS!!!
     this.parentElement.remove();    
 }
-
