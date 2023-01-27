@@ -22,9 +22,9 @@
             <input type="number" placeholder="Pages" name="page-count" id="page-count" min="1" required>
             <label for="read-status">Have you read this book before?</label>
             <div class="read-status-btns">
-                <input type="radio" name="read-status" class="read-status-btn" id="yesChoice" value="Read" required>
+                <input type="radio" name="read-status" class="read-status-btn" id="yesChoice" value="Read">
                 <label for="yesChoice">Yes</label>
-                <input type="radio" name="read-status" class="read-status-btn" id="noChoice" value="Unread" required>
+                <input type="radio" name="read-status" class="read-status-btn" id="noChoice" value="Unread">
                 <label for="noChoice">No</label>
             </div>
             <button type="button" class="submit-btn" onclick="createNewBook()">Submit</button>
@@ -34,6 +34,6 @@
     <div id="library-container">
         <div id="library-grid"></div>
     </div>
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

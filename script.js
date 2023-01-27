@@ -1,18 +1,33 @@
-let myLibrary = []; 
+const myLibrary = []; 
 // const theAuctioneer = new Book('The Auctioneer', 'Joan Samson', '260 pages', 'Unread');
 // const theElementals = new Book('The Elementals', 'Michael McDowell', '230 pages', 'Unread');
 // const theHellboundHeart = new Book('The Hellbound Heart', 'Clive Barker', '186 pages', 'Unread');
+
+//Class refactor
+class Book {
+    constructor(title, author, pages, readStatus, position) {
+        this.title = title, 
+        this.author = author, 
+        this.pages = pages,
+        this.readStatus = readStatus, 
+        this.position = position,
+
+        myLibrary.push(this)
+    }
+    swapObjectReadStatus() {
+        this.readStatus == 'Read' ? this.readStatus = 'Unread' : this.readStatus = 'Read';
+    }
+    swapButtonReadStatus() {
+        if (this.innerText == 'Unread') {
+            this.innerText = 'Read'
+            this.style.setProperty('background', '#9A9B73') 
+        } else {
+            this.innerText = 'Unread'
+            this.style.setProperty('background', '#F78E69') 
+        }
+    }
+}
 const theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', '235 pages', 'Read');
-
-function Book(title, author, pages, readStatus, position) {
-    this.title = title;
-    this.author = author; 
-    this.pages = pages; 
-    this.readStatus = readStatus;
-    this.position = position; 
-
-    myLibrary.push(this)
-};
 
 // Creates cards in html displaying books from array
 function displayBookInLibrary () {
@@ -36,8 +51,8 @@ function displayBookInLibrary () {
         readStatus.classList.add('read-status');
         deleteButton.classList.add('delete-button');
 
-        // Add event listeners to readStatus and deleteButton
-        readStatus.addEventListener('click', swapReadStatus);
+        readStatus.addEventListener('click', book.swapButtonReadStatus);
+        readStatus.addEventListener('click', function() {book.swapObjectReadStatus()});
         deleteButton.addEventListener('click', deleteContainer);
 
         //Create container within card to hold book info 
@@ -55,7 +70,7 @@ function displayBookInLibrary () {
         bookContainer.appendChild(deleteButton);
         document.getElementById('library-grid').appendChild(bookContainer);
         
-        //Set default readStatus color on example card container ('The Hobbit')
+        //Sets default readStatus color on newly created book tile
         if (readStatus.innerText == 'Read') {
             readStatus.style.setProperty('background', '#9A9B73') 
         } else {
@@ -63,7 +78,7 @@ function displayBookInLibrary () {
         }
     });
 };
-displayBookInLibrary();
+displayBookInLibrary ();
 
 //open form 
 function openForm() {
@@ -83,24 +98,14 @@ function createNewBook () {
 
     //clear grid 
     const libraryGrid = document.getElementById('library-grid');
-    while(libraryGrid.firstChild){
+    while (libraryGrid.firstChild) {
         libraryGrid.removeChild(libraryGrid.firstChild);
     }
+    
     new Book(newTitle, newAuthor, newPageCount, newReadStatus);
     displayBookInLibrary();
     closeForm();
     document.getElementById("form-container").reset();
-}
-
-// Swap read status on click 
-function swapReadStatus() {
-    this.innerText == 'Read' ? this.innerText = 'Unread' : this.innerText = 'Read';
-    console.log(this.innerText);
-    if (this.innerText == 'Unread') {
-        this.style.setProperty('background', '#F78E69') 
-    } else {
-        this.style.setProperty('background', '#9A9B73') 
-    }
 }
 
 //delete book card and empty array
@@ -108,10 +113,8 @@ function deleteContainer() {
     let bookContainersId = this.parentElement.id; 
     myLibrary.forEach(function (i) { 
         if (bookContainersId == myLibrary.indexOf(i)){
-            console.log(myLibrary.indexOf(i))
         myLibrary.splice(bookContainersId, 1);
         }
     });
-    // ^^ I DID IT! IT WORKS!!!
     this.parentElement.remove();    
 }
